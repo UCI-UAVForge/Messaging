@@ -1,0 +1,73 @@
+message uavforge;
+
+message Packet{
+	required uint64 timestamp = 1;
+	required string sender = 2;
+	required string target = 3;
+	enum MessageType{
+		ACK = 0;
+		TELEM = 1;
+		ACTION = 2;
+		UPDATE = 3;
+		INFO = 4;
+	}
+	
+	required MessageType type = 4;
+	oneof Contents{
+		TelemetryPacket telem = 5;
+		ActionPacket comm = 6;
+		InfoPacket info = 8;
+		AckPacket ack = 9;
+	}
+}
+
+message TelemetryPacket{
+	required int32 seqNo = 1;
+	required float accx = 2;
+	required float accy = 3;
+	required float accz = 4;
+	required float pitch = 5;
+	required float roll = 6;
+	required float yaw = 7;
+	required double lat = 8;
+	required double lng = 9;
+	required float alt = 10;
+	required float speed = 11;
+	required int32 barometer = 12;
+}
+
+message ActionPacket{
+	required int32 priority = 1;
+	
+	enum ActionType{
+		START = 0;
+		REQUEST_INFO = 1;
+		ADD_WAYPOINT = 2;
+		SET_HOME = 3;
+		REMOVE_WAYPOINT = 4;
+		STOP = 14;
+		SHUTDOWN = 15;
+	}
+	
+	required ActionType action_type = 2;
+	
+	message WaypointPacket{
+		required int32 seqNo = 1;
+		required double lat = 2;
+		required double lng = 3;
+		required float alt = 4;
+		required float speed = 5;
+	}
+	
+	repeated WaypointPacket waypoints = 3;
+}
+
+message InfoPacket{
+	optional uint32 pointsStorable = 1;
+	optional uint32 battery = 2;
+	repeated string infoStrings = 3;
+}
+
+message AckPacket{
+	required uint64 ackTimestamp = 1;
+}
