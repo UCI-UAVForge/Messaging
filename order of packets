@@ -1,0 +1,22 @@
+o	UAV starts up
+  GS sends action/request info packet
+    Signal to UAV that GS is there
+	UAV responds with an info packet
+UAV sends telemetry every 200ms until shutdown
+  For every packet GS responds with ACK packet
+•	  Lost link tracking
+•	  If GS doesn’t receive telemetry or UAV doesn’t get ack packet in 1s
+    o	    Lost link state
+    o	    Other parts of system responds
+Ground station will send numbered waypoint packets to prg route
+  	UAV responds with ACK to every packet
+  	0 0 0 default NO value
+o	To start automation GS sends Action/Start
+  	UAV responds with ACK
+  	UAv sends out waypoint packet every time it reach waypoint
+    •	Not to establish position, more for matching waypoints as reached
+    •	GS sends ACK packet 
+o	GS sends stop nav packet
+  	UAV goes home
+o	Gs sends Action/shutdown when GS disconnects
+  	UAV will refuse to fly on AI after its been disconnected
