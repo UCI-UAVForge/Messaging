@@ -1,10 +1,10 @@
-message uavforge;
+package uavforge;
 
-message Packet{
+message Packet {
 	required uint64 timestamp = 1;
 	required string sender = 2;
 	required string target = 3;
-	enum MessageType{
+	enum MessageType {
 		ACK = 0;
 		TELEM = 1;
 		ACTION = 2;
@@ -13,7 +13,7 @@ message Packet{
 	}
 	
 	required MessageType type = 4;
-	oneof Contents{
+	oneof contents {
 		TelemetryPacket telem = 5;
 		ActionPacket comm = 6;
 		InfoPacket info = 8;
@@ -21,7 +21,7 @@ message Packet{
 	}
 }
 
-message TelemetryPacket{
+message TelemetryPacket {
 	required int32 seqNo = 1;
 	required float accx = 2;
 	required float accy = 3;
@@ -36,7 +36,7 @@ message TelemetryPacket{
 	required int32 barometer = 12;
 }
 
-message ActionPacket{
+message ActionPacket {
 	required int32 priority = 1;
 	
 	enum ActionType{
@@ -51,7 +51,7 @@ message ActionPacket{
 	
 	required ActionType action_type = 2;
 	
-	message WaypointPacket{
+	message WaypointPacket {
 		required int32 seqNo = 1;
 		required double lat = 2;
 		required double lng = 3;
