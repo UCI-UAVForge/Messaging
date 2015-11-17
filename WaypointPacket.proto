@@ -1,0 +1,9 @@
+package uavforge;
+
+message WaypointPacket {
+	required int32 seqNo = 1;
+	required double lat = 2;
+	required double lng = 3;
+	required float alt = 4;
+	required float speed = 5;
+}
