@@ -1,0 +1,7 @@
+package uavforge;
+
+message InfoPacket{
+	optional uint32 pointsStorable = 1;
+	optional uint32 battery = 2;
+	repeated string infoStrings = 3;
+}

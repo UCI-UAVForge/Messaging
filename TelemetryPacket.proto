@@ -1,0 +1,16 @@
+package uavforge;
+
+message TelemetryPacket {
+	required int32 seqNo = 1;
+	required float accx = 2;
+	required float accy = 3;
+	required float accz = 4;
+	required float pitch = 5;
+	required float roll = 6;
+	required float yaw = 7;
+	required double lat = 8;
+	required double lng = 9;
+	required float alt = 10;
+	required float speed = 11;
+	required int32 barometer = 12;
+}

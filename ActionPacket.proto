@@ -1,0 +1,21 @@
+package uavforge;
+
+import "WaypointPacket.proto";
+
+message ActionPacket {
+	required int32 priority = 1;
+	
+	enum ActionType{
+		START = 0;
+		REQUEST_INFO = 1;
+		ADD_WAYPOINT = 2;
+		SET_HOME = 3;
+		REMOVE_WAYPOINT = 4;
+		STOP = 14;
+		SHUTDOWN = 15;
+	}
+	
+	required ActionType action_type = 2;
+	
+	repeated WaypointPacket waypoints = 3;
+}

@@ -1,0 +1,5 @@
+package uavforge;
+
+message AckPacket{
+	required uint64 ackTimestamp = 1;
+}
